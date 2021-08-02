@@ -42,17 +42,19 @@ def download_mp3(yt_url: str, session=get_session(), timeout=120.0) -> Tuple[byt
 
 
 
-url = 'https://www.youtube.com/playlist?list=someplaylistlink'
+url = 'https://www.youtube.com/playlist?list=PLmv_bvU0txj_s55Z_2ax5AzAIYY0pN25-'
 playlist = Playlist(url)
 session = get_session()
 
-if not os.path.exists(playlist.title):
-    os.mkdir(playlist.title)
+pl_title = playlist.title.replace('/', ' ').replace('\\', ' ')
+
+if not os.path.exists(os.path.normpath(pl_title)):
+    os.mkdir(os.path.normpath(pl_title))
 
 print('Start Download...')
 for idx, vid in enumerate(playlist.video_urls, 1):
     print(f'{idx}/{playlist.length} {vid} ...', end='\r')
     mp3, title = download_mp3(vid, session=session)
-    with open(os.path.join(playlist.title, title + '.mp3'), 'wb') as f:
+    with open(os.path.normpath(os.path.join(pl_title, title + '.mp3')), 'wb') as f:
         f.write(mp3)
     print(f'{idx}/{playlist.length} {title}' + ' '*(len(vid) + 4 - len(title)))
