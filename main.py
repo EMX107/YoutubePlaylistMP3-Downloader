@@ -42,7 +42,7 @@ def download_mp3(yt_url: str, session=get_session(), timeout=120.0) -> Tuple[byt
 
 
 
-url = 'https://www.youtube.com/playlist?list=PLBxWnp7_G3JZkvpXe8DauW1I8ttFFGPa5'
+url = 'https://www.youtube.com/playlist?list=someplaylistlink'
 playlist = Playlist(url)
 session = get_session()
 
