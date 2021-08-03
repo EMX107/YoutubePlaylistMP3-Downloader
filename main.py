@@ -55,6 +55,6 @@ print('Start Download...')
 for idx, vid in enumerate(playlist.video_urls, 1):
     print(f'{idx}/{playlist.length} {vid} ...', end='\r')
     mp3, title = download_mp3(vid, session=session)
-    with open(os.path.normpath(os.path.join(pl_title, title + '.mp3')), 'wb') as f:
+    with open(os.path.normpath(os.path.join(pl_title, title.replace('/', ' ').replace('\\', ' ') + '.mp3')), 'wb') as f:
         f.write(mp3)
     print(f'{idx}/{playlist.length} {title}' + ' '*(len(vid) + 4 - len(title)))
