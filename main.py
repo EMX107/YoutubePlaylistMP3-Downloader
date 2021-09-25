@@ -55,7 +55,6 @@ if __name__ == '__main__':
     playlist = Playlist(url)
     session = get_session()
 
-    # get title of playlist and replace all forbidden characters
     pl_title = get_valid_file_name_for_windows(playlist.title) + ' - Download'
 
 
@@ -84,6 +83,6 @@ if __name__ == '__main__':
                 f.write(mp3)
             print(f'{idx}/{playlist.length} {title}' + ' '*(len(vid) + 14 + len(str(retries)) - len(title)))
         else:
-            print(f'ERROR :: download failed!{" "*(len(vid) + len(str(retries)) - 11)}\n\t{idx}/{playlist.length} {vid}')
+            print(f'ERROR :: download failed!{" "*(len(vid) + len(str(retries)) + len(str(idx)) + len(str(playlist.length)) - 9)}\n\t{idx}/{playlist.length} {vid}')
             with open(os.path.normpath(os.path.join(pl_title, 'failed.txt')), mode='a') as f:
                 f.write(vid + '\n')
